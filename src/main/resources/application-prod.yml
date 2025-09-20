@@ -1,0 +1,10 @@
+# application-prod.yml
+spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/library
+    username: USE_SECRET
+    password: USE_SECRET
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false

@@ -1,0 +1,44 @@
+@base_url = http://localhost:8080
+@borrower_id = 1
+@book_id = 1
+
+# POST: Register a new borrower to the library
+POST {{base_url}}/api/borrowers
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "name": "John Doe"
+}
+
+### Register a New Book
+POST {{base_url}}/api/books
+Content-Type: application/json
+
+{
+  "isbn": "1234567890",
+  "title": "Sample Book",
+  "author": "Sample Author"
+}
+
+### List All Books
+GET {{base_url}}/api/books
+
+### Borrow a Book
+POST {{base_url}}/api/borrowers/{{borrower_id}}/borrow/{{book_id}}
+Content-Type: application/json
+
+{
+  "borrowerId": {{borrower_id}},
+  "bookId": {{book_id}}
+}
+
+### Return a Book
+POST {{base_url}}/api/borrowers/{{borrower_id}}/return/{{book_id}}
+Content-Type: application/json
+
+### Verify Borrower Details
+GET {{base_url}}/api/borrowers/{{borrower_id}}
+
+### Verify Book Details
+GET {{base_url}}/api/books/{{book_id}}
