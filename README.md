@@ -51,12 +51,6 @@ Ensure you have the following setup:
     java -jar target/library-managment-system-0.0.1-SNAPSHOT.jar
     ```
 
-### CI/CD with GitHub Actions
-
-Automate Docker image builds and pushes with GitHub Actions. Configuration is located in `.github/workflows/docker-build-push.yml`.
-
-- **Build and push Docker image**: Automatically triggered on pushes to the `main` branch.
-
 
 ## 📜 Logging
 
