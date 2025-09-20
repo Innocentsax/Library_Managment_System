@@ -20,7 +20,6 @@ The **Library Management System** is a comprehensive RESTful API for managing bo
 
 - **Java 17**: Utilizes the latest Java version with Maven for dependencies.
 - **Spring Boot**: Simplifies configuration and setup.
-- **Dockerized**: Multi-stage Docker builds for optimized images.
 - **CI/CD**: GitHub Actions automates Docker builds and pushes to Docker Hub.
 - **API Documentation**: Interactive API documentation with Swagger.
 
@@ -33,14 +32,12 @@ Ensure you have the following setup:
 - Docker
 - Maven
 - GitHub account
-- Docker Hub account
-- Kubernetes (minikube or similar)
 
 ### Build and Run Locally
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/thilina01/library-management-system.git
+    git clone https://github.com/Innocentsax/Library_Managment_System.git
     cd library-management-system
     ```
 
@@ -51,36 +48,7 @@ Ensure you have the following setup:
 
 3. **Run the application**:
     ```sh
-    java -jar target/library-management-system-0.0.1-SNAPSHOT.jar
-    ```
-
-### Docker
-
-1. **Build Docker image**:
-    ```sh
-    docker build -t thilina01/library-management-system .
-    ```
-
-2. **Run Docker container**:
-    ```sh
-    docker run -p 8080:8080 thilina01/library-management-system
-    ```
-
-3. **Run with a specific profile**:
-    ```sh
-    docker run -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=prod" thilina01/library-management-system
-    ```
-
-### Docker Swarm
-
-1. **Initialize Docker Swarm**:
-    ```sh
-    docker swarm init
-    ```
-
-2. **Deploy the stack**:
-    ```sh
-    docker stack deploy -c docker-compose.yml library-management-system
+    java -jar target/library-managment-system-0.0.1-SNAPSHOT.jar
     ```
 
 ### CI/CD with GitHub Actions
@@ -89,85 +57,6 @@ Automate Docker image builds and pushes with GitHub Actions. Configuration is lo
 
 - **Build and push Docker image**: Automatically triggered on pushes to the `main` branch.
 
-## 🏗️ Kubernetes Deployment with MySQL
-
-Deploy the Library Management System to Kubernetes with MySQL.
-
-### Prerequisites
-
-- Kubernetes cluster
-- `kubectl` installed and configured
-- Docker Hub account with application image
-
-### Kubernetes Manifests
-
-The Kubernetes manifests are located in the `k8s` directory and include the following files:
-- `mysql-secret.yaml`: Defines the Secrets for database credentials.
-- `mysql-deployment.yaml`: Defines the Deployment for the MySQL database.
-- `mysql-service.yaml`: Defines the Service to expose the MySQL database.
-- `mysql-pvc.yaml`: Defines the PersistentVolumeClaim for MySQL data storage.
-- `deployment.yaml`: Defines the Deployment for the application.
-- `service.yaml`: Defines the Service to expose the application.
-- `ingress.yaml`: (Optional) Defines the Ingress to route external traffic to the application.
-
-### Apply Kubernetes Manifests
-
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/thilina01/library-management-system.git
-    cd library-management-system
-    ```
-
-2. **Apply the manifests** to your Kubernetes cluster:
-    ```sh
-    kubectl apply -f k8s/mysql-secret.yaml
-    kubectl apply -f k8s/mysql-pvc.yaml
-    kubectl apply -f k8s/mysql-deployment.yaml
-    kubectl apply -f k8s/mysql-service.yaml
-    kubectl apply -f k8s/log-pv.yaml
-    kubectl apply -f k8s/deployment.yaml
-    kubectl apply -f k8s/service.yaml
-    # Apply ingress only if you have set up an Ingress controller
-    kubectl apply -f k8s/ingress.yaml
-    ```
-
-### Accessing the Application
-
-- **LoadBalancer Service**: Once the Service is created, it will provision a LoadBalancer. You can get the external IP using:
-    ```sh
-    kubectl get svc library-management-system
-    ```
-- **Ingress (optional)**: If you have set up an Ingress controller, you can access the application using the host defined in the `ingress.yaml` file. Ensure you have configured the DNS or `/etc/hosts` file to resolve the hostname.
-
-### Additional Commands
-
-- **Scale the Deployment**:
-    ```sh
-    kubectl scale deployment/library-management-system --replicas=5
-    ```
-- **Check the status of the pods**:
-    ```sh
-    kubectl get pods -l app=library-management-system
-    ```
-- **Describe the Deployment**:
-    ```sh
-    kubectl describe deployment/library-management-system
-    ```
-
-### Cleanup
-
-To delete the resources created, run:
-```sh
-kubectl delete -f k8s/mysql-secret.yaml
-kubectl delete -f k8s/mysql-pvc.yaml
-kubectl delete -f k8s/mysql-deployment.yaml
-kubectl delete -f k8s/mysql-service.yaml
-kubectl delete -f k8s/log-pv.yaml
-kubectl delete -f k8s/deployment.yaml
-kubectl delete -f k8s/service.yaml
-# Delete ingress only if you applied it
-kubectl delete -f k8s/ingress.yaml
-```
 
 ## 📜 Logging
 
@@ -221,7 +110,6 @@ A Postman collection is available to facilitate testing and exploring the Librar
 **Postman Collection Information:**
 - **Name**: Library Management System
 - **Description**: Postman collection for the Library Management System API
-- **Schema**: [Postman Collection Schema](https://raw.githubusercontent.com/thilina01/library-management-system/main/postman_collection.json)
 
 **Endpoints Included:**
 1. **Register a New Borrower**
@@ -287,19 +175,12 @@ A Postman collection is available to facilitate testing and exploring the Librar
 - **borrower_id**: `1`
 - **book_id**: `1`
 
-### Importing the Collection into Postman
-To import the Postman collection:
-1. Download the `postman_collection.json` file from the repository.
-2. Open Postman and click on `Import`.
-3. Select the `postman_collection.json` file and click `Open`.
-
-This will import all the endpoints into Postman, making it easier to test and interact with the Library Management System API.
 
 ### API Documentation with Swagger
 
 Swagger is integrated into the project to provide interactive API documentation. To access the Swagger UI:
 
-1. **Run the application** (locally or using Docker).
+1. **Run the application** .
 2. Open your browser and navigate to:
     ```sh
     http://localhost:8080/swagger-ui.html
@@ -353,12 +234,7 @@ This will open the Swagger UI where you can interact with the API endpoints and 
     GET /api/books/{bookId}
     ```
 
-## 🤝 Contributing
+## 🤝 Thanks
 
-Contributions are welcome! Please fork this repository and submit a pull request for any feature additions or bug fixes.
 
-## 🌟 Acknowledgments
-
-- Thanks to the open-source community for their invaluable contributions.
-- Special thanks to the maintainers of Spring Boot, Docker, and GitHub Actions.
 
